@@ -14,8 +14,14 @@ use App\Http\Controllers\BelajarController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [\App\Http\Controllers\LoginController::class, 'index']);
+Route::get('login', [\App\Http\Controllers\LoginController::class, 'index'])->name('login');
+Route::post('action-login', [\App\Http\Controllers\LoginController::class, 'actionLogin'])->name('action-login');
+Route::get('sign-out', [\App\Http\Controllers\LoginController::class, 'logout'])->name('sign-out');
+
+//resource -> get, post, put, delete
+Route::prefix('admin')->group(function () {
+    Route::resource('dashboard', \App\Http\Controllers\ADMIN\DashboardController::class);
 });
 
 // route get : melihat, membaca 
