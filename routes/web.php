@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BelajarController;
+use App\Http\Controllers\ADMIN\logincontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,12 @@ Route::get('sign-out', [\App\Http\Controllers\LoginController::class, 'logout'])
 //resource -> get, post, put, delete
 Route::prefix('admin')->group(function () {
     Route::resource('dashboard', \App\Http\Controllers\ADMIN\DashboardController::class);
+    Route::resource('user', \App\Http\Controllers\ADMIN\UserController::class);
+    Route::resource('blog', \App\Http\Controllers\ADMIN\BlogController::class);
 });
 
-// route get : melihat, membaca 
+
+// route get : melihat, membaca
 Route::get('belajar', [BelajarController::class, 'index']);
 Route::get('aritmatika', [BelajarController::class, 'create']);
 Route::get('aritmatika/tambah', [BelajarController::class, 'tambah']);
